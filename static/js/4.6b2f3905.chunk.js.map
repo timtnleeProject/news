@@ -1,0 +1,1 @@
+{"version":3,"sources":["routes/News/index.js"],"names":[],"mappings":"2GAAA,2BAEe,qBACb,OACE","file":"static/js/4.6b2f3905.chunk.js","sourcesContent":["import React from 'react'\n\nexport default function () {\n  return (\n    <div>News</div>\n  )\n}\n"],"sourceRoot":""}
