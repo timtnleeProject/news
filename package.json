@@ -14,8 +14,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "node script/git-check.js && yarn build && node script/deploy"
   },
+  "homepage": "https://timtnleeproject.github.io/news",
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -30,5 +32,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^2.2.0",
+    "simple-git": "^1.131.0"
   }
 }
