@@ -1,6 +1,7 @@
 import { Store } from './store';
 import CONFIG from '../config'
-const apiKey = CONFIG.token;
+const origin = CONFIG.api.origin
+const apiKey = CONFIG.api.token;
 
 const store = new Store()
 const anHour = 60 * 60 * 1000
@@ -13,7 +14,7 @@ export function resetTopHeadlines () {
 }
 
 export function getTopHeadlines ({ country }) {
-  const url = `${CONFIG.api.origin}top-headlines?` +
+  const url = `${origin}top-headlines?` +
       `country=${country || 'us'}&` +
       `apiKey=${apiKey}`
   const localHeadlines = store.get('headlines')
