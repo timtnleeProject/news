@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import React, { Suspense, lazy } from 'react'
+import CONFIG from './config'
 import './App.css';
 
 const Home = lazy(() => import('./routes/Home'));
@@ -13,7 +14,7 @@ const AppHeader = () => (
 
 const AppContent = () => (
   <div className="App-content">
-    <Router>
+    <Router basename={CONFIG.baseUrl}>
       <Suspense fallback={<div>Loading...</div>}>
         <Switch>
           <Route exact path="/" component={Home}/>

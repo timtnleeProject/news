@@ -1,5 +1,6 @@
 import { Store } from './store';
-const apiKey = 'a1e0f3427bfd466988c4a19c0c7095f5';
+import CONFIG from '../config'
+const apiKey = CONFIG.token;
 
 const store = new Store()
 const anHour = 60 * 60 * 1000
