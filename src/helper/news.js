@@ -13,7 +13,7 @@ export function resetTopHeadlines () {
 }
 
 export function getTopHeadlines ({ country }) {
-  const url = 'http://newsapi.org/v2/top-headlines?' +
+  const url = `${CONFIG.api.origin}top-headlines?` +
       `country=${country || 'us'}&` +
       `apiKey=${apiKey}`
   const localHeadlines = store.get('headlines')
