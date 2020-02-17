@@ -1,4 +1,4 @@
-const path =require('path')
+const path = require('path')
 const rootDir = path.resolve(__dirname, '../')
 const simpleGit = require('simple-git')(rootDir)
 

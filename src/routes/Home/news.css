@@ -1,0 +1,14 @@
+.NewsList {
+  padding: 10px;
+}
+
+.News {
+  margin-bottom: 10px;
+}
+.News-title {
+  margin: 5px 0;
+  font-size: 18px;
+}
+.News-description {
+  font-size: 14px;
+}
