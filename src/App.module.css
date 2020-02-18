@@ -1,0 +1,19 @@
+.header {
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+}
+.content {
+  height: calc(100vh - var(--footer-height) - var(--header-height));
+  overflow-y: scroll;
+}
+.footer {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  height: var(--footer-height);
+  background-color: var(--color-main);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

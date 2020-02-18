@@ -2,6 +2,7 @@ const isExpired = (date) => {
   if (!date) return false
   return Date.now() > new Date(date).getTime()
 }
+
 export class Store {
   save ({ key, value, expired }) {
     if (!value || typeof value !== 'object') throw new Error('value must be an object')

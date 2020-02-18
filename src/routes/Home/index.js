@@ -1,30 +1,7 @@
 import React from 'react'
-import './news.css'
-import { getTopHeadlines } from '../../helper/news'
-
-function News (props) {
-  return (
-    <div className="News">
-      <div className="News-title">{props.title}</div>
-      <div className="News-description">{props.description}</div>
-    </div>
-  )
-}
-
-function NewsList (props) {
-  const news = props.list.map(item => (
-    <News
-      title={item.title}
-      description={item.description}
-      key={item.url}
-    />
-  ))
-  return (
-    <div className="NewsList">
-      {news}
-    </div>
-  )
-}
+import NewsList from '../../components/NewsList/index'
+import Loading from '../../components/Loading/index'
+import { getTopHeadlines } from '../../helper/api'
 
 export default class Home extends React.Component {
   constructor (props) {
@@ -44,8 +21,11 @@ export default class Home extends React.Component {
   render () {
     return (
       <div>
-        <div>Home</div>
-        <NewsList list={this.state.list}/>
+        {
+          this.state.list.length === 0
+            ? <Loading/>
+            : <NewsList list={this.state.list}/>
+        }
       </div>
     )
   }

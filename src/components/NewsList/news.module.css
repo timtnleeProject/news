@@ -1,0 +1,41 @@
+.list {
+  max-width: 700px;
+  margin: auto;
+}
+.item {
+  margin-bottom: 20px;
+  cursor: pointer;
+  display: flex;
+  flex-wrap: wrap;
+}
+.item:hover {
+  color: var(--color-main);
+}
+.content {
+  flex: 3 0 0;
+  box-sizing: border-box;
+  padding: 5px;
+}
+.title {
+  margin: 5px 0;
+  font-size: 20px;
+}
+.description {
+  font-size: 14px;
+}
+.image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: #eee;
+  flex: 2 0 0;
+}
+@media screen and (max-width: 700px) {
+  .image {
+    flex: 0 0 100%;
+  }
+}
+.image img {
+  width: 100%;
+}

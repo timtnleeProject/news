@@ -1,19 +1,19 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import React, { Suspense, lazy } from 'react'
 import CONFIG from './config'
-import './App.css';
+import styles from './App.module.css'
 
 const Home = lazy(() => import('./routes/Home'));
 const About = lazy(() => import('./routes/News'));
 
 const AppHeader = () => (
-  <div className="AppHeader">
+  <div className={styles.header}>
     <div className="AppHeader-logo">Title</div>
   </div>
 )
 
 const AppContent = () => (
-  <div className="App-content">
+  <div className={styles.content}>
     <Router basename={CONFIG.baseUrl}>
       <Suspense fallback={<div>Loading...</div>}>
         <Switch>
@@ -26,7 +26,7 @@ const AppContent = () => (
 )
 
 const AppFooter = () => (
-  <div className="AppFooter">
+  <div className={styles.footer}>
     <span>Free API: </span>
     <a href="https://newsapi.org/" target="_blank" rel="noopener noreferrer">NEWS API</a>
   </div>
