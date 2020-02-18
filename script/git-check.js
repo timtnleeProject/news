@@ -1,7 +1,7 @@
 const path = require('path')
 const rootDir = path.resolve(__dirname, '../')
 const simpleGit = require('simple-git')(rootDir)
-
+console.log(rootDir)
 simpleGit.status((err, status) => {
   for (let key in status) {
     const item = status[key]
