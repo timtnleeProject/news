@@ -1,2 +1,0 @@
-(this["webpackJsonploc-news"]=this["webpackJsonploc-news"]||[]).push([[5],{66:function(e,n,s){"use strict";s.r(n);var t=s(0),c=s.n(t);n.default=function(){return c.a.createElement("div",null,"News")}}}]);
-//# sourceMappingURL=5.1a33820b.chunk.js.map
