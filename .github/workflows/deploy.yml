@@ -12,12 +12,6 @@ jobs:
       - uses: borales/actions-yarn@v2.0.0
         with:
           cmd: install # will run `yarn install` command
-      - name: add git env
-        uses: fnkr/github-action-git-bash@v1 # add git env
-        with:
-          secrets: |
-            "GITHUB_TOKEN"
-            "SSH_KEY"
       - uses: borales/actions-yarn@v2.0.0
         with:
-          cmd: deploy
+          cmd: build
