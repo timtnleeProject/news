@@ -4,6 +4,9 @@ const isExpired = (date) => {
 }
 
 export class Store {
+  constructor (initialStore) {
+    this.initialStore = initialStore
+  }
   save ({ key, value, expired }) {
     if (!value || typeof value !== 'object') throw new Error('value must be an object')
     const str = JSON.stringify({
@@ -14,13 +17,27 @@ export class Store {
   }
   get (key) {
     const str = localStorage.getItem(key)
-    if (str) {
-      const parsed = JSON.parse(str)
-      return isExpired(parsed.expired) ? null : parsed.value
+    if (!str) return this.initialStore[key] || null
+    const parsed = JSON.parse(str)
+    if (isExpired(parsed.expired)) {
+      return this.initialStore[key] || null
+    } else {
+      return parsed.value
     }
-    else return str
   }
   remove (key) {
     localStorage.removeItem(key)
   }
+  clear () {
+    localStorage.clear()
+  }
 }
+
+const globalStore = new Store({
+  setting: {
+    country: 'tw'
+  }
+})
+// developing
+// store.clear()
+export default globalStore

@@ -1,4 +1,4 @@
-import { Store } from './store';
+import store from './store';
 import axios from 'axios'
 import CONFIG from '../config'
 const { origin, token } = CONFIG.api
@@ -12,9 +12,8 @@ const instance = axios.create({
 })
 instance.interceptors.response.use(response => {
   if (response.data && response.data.status === 'ok') return response.data
-  else return response
+  else return Promise.reject(response)
 })
-const store = new Store()
 const anHour = 60 * 60 * 1000
 const dateAfter = (milisec) => {
   return new Date(Date.now() + milisec)
@@ -24,7 +23,8 @@ export function resetTopHeadlines () {
   store.remove('headlines')
 }
 
-export function getTopHeadlines ({ country = 'us' }) {
+export function getTopHeadlines () {
+  const country = store.get('setting').country
   const localHeadlines = store.get('headlines')
   if (localHeadlines) return Promise.resolve(localHeadlines)
   return instance.get('/top-headlines', {

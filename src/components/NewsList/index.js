@@ -12,9 +12,10 @@ function News (props) {
     >
       { props.image
         ? (
-          <div className={styles.image}>
-            <img src={props.image} alt={props.title}/>
-          </div>
+          <div
+            className={styles.image}
+            style={{backgroundImage: `url(${props.image})`}}
+          ></div>
         )
         : null
       }
@@ -37,7 +38,7 @@ export default function NewsList (props) {
     />
   ))
   return (
-    <div className={styles.list}>
+    <div>
       {news}
     </div>
   )

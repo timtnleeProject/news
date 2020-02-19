@@ -1,10 +1,15 @@
 
 :root {
-  --color-main: coral;
-  --color-sub: coral;
-  --color-info: coral;
-  --color-warn: coral;
-  --color-light: coral;
-  --header-height: 70px;
-  --footer-height: 80px;
+  --color-primary: #0622ee;
+  --color-primary-hover: #000ae4;
+  --color-primary-variant: #3700b3;
+  --color-secondary: #03dac6;
+  --color-secondary-hover: #00b798;
+  --color-secondary-variant: #018786;
+  --color-error: #b00020;
+  --color-light: #fff;
+  --color-dark: #000;
+  --header-height: 60px;
+  --footer-height: 40px;
+  --page-width: 850px;
 }

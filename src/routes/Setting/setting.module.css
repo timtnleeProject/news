@@ -1,0 +1,28 @@
+.section {
+  padding: 10px;
+  border: 1px solid lightgray;
+}
+.title {
+  font-weight: bold;
+  font-size: 16px;
+  margin: 5px 0;
+}
+.tags-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+.tag {
+  padding: 5px;
+  background-color: var(--color-secondary);
+  color: var(--color-dark);
+  margin: 2px;
+  min-width: 30px;
+  text-align: center;
+  cursor: pointer;
+}
+.tag:hover {
+  background-color: var(--color-secondary-hover);
+}
+.tag.active {
+  background-color: var(--color-secondary-variant);
+}
