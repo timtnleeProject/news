@@ -1,7 +1,7 @@
 import React from 'react'
 import NewsList from '../../components/NewsList/index'
 import Loading from '../../components/Loading/index'
-import { getTopHeadlines } from '../../helper/api'
+import { getTopHeadlines } from '../../helper/data'
 
 export default class Home extends React.Component {
   constructor (props) {

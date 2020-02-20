@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
 import React, { Suspense, lazy } from 'react'
 import CONFIG from './config'
 import styles from './App.module.css'
@@ -16,11 +16,35 @@ const AppHeader = () => (
   </div>
 )
 
+const routes = [{
+  path: '/',
+  name: '焦點',
+  component: Home,
+  exact: true
+}, {
+  path: '/setting',
+  name: '設定',
+  component: Setting,
+  exact: true
+}]
+
 const AppContent = () => (
   <div className={styles.content}>
     <div className={styles.page}>
       <Suspense fallback={<div>Loading...</div>}>
         <Switch>
+          {
+            routes.map(route => {
+              const { exact, path, component } = route
+              return (
+                <Route
+                  key={path}
+                  exact={exact}
+                  path={path}
+                  component={component}
+                />)
+            })
+          }
           <Route exact path="/" component={Home}/>
           <Route path="/setting" component={Setting}/>
         </Switch>
@@ -32,9 +56,22 @@ const AppContent = () => (
 const AppFooter = () => (
   <div className={styles.footer}>
     <div className={styles['footer__tabs']}>
-      <Link to="/" className={styles['footer__tab']}>焦點</Link>
-      <button className={styles['footer__tab']}>搜尋</button>
-      <Link to="/setting" className={styles['footer__tab']}>設定</Link>
+      {
+        routes.map(route => {
+          const { path, name, exact } = route
+          return (
+            <NavLink
+              key={name}
+              to={path}
+              exact={exact}
+              className={styles['footer__tab']}
+              activeClassName={styles.active}
+            >
+              {name}
+            </NavLink>
+          )
+        })
+      }
     </div>
   </div>
 )

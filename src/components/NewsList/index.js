@@ -5,6 +5,11 @@ function News (props) {
   const openLink = () => {
     window.open(props.url, '_blank')
   }
+  const info = [props.source.name]
+  if (props.author) info.push(props.author)
+  const date = props.publishedAt
+    ? new Date(props.publishedAt).toLocaleString()
+    : null
   return (
     <div
       className={styles.item}
@@ -21,6 +26,10 @@ function News (props) {
       }
       <div className={styles.content}>
         <div className={styles.title}>{props.title}</div>
+        <div className={styles.info}>
+          <span>{info.join('/')}</span>
+          <span>{date}</span>
+        </div>
         <div className={styles.description}>{props.description}</div>
       </div>
     </div>
@@ -33,6 +42,9 @@ export default function NewsList (props) {
       title={item.title}
       description={item.description}
       url={item.url}
+      source={item.source}
+      author={item.author}
+      publishedAt={item.publishedAt}
       image={item.urlToImage}
       key={item.url}
     />
