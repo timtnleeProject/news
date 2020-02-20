@@ -10,7 +10,6 @@ export default class Setting extends React.Component {
     this.state = {
       country: store.get('setting').country
     }
-    this.handleTagSelect = this.handleTagSelect.bind(this)
   }
   handleTagSelect (country) {
     const setting = store.get('setting')
@@ -30,7 +29,6 @@ export default class Setting extends React.Component {
   render () {
     return (
       <div>
-        <h2>設定</h2>
         <div className={styles.section}>
           <div className={styles.title}>國家</div>
           <div className={styles['tags-wrap']}>

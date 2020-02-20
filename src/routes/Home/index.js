@@ -21,7 +21,6 @@ export default class Home extends React.Component {
   render () {
     return (
       <div>
-        <h2>焦點新聞</h2>
         {
           this.state.list.length === 0
             ? <Loading/>

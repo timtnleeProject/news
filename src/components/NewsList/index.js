@@ -37,7 +37,7 @@ function News (props) {
 }
 
 export default function NewsList (props) {
-  const news = props.list.map(item => (
+  const news = props.list.map((item, i) => (
     <News
       title={item.title}
       description={item.description}
@@ -46,7 +46,7 @@ export default function NewsList (props) {
       author={item.author}
       publishedAt={item.publishedAt}
       image={item.urlToImage}
-      key={item.url}
+      key={i}
     />
   ))
   return (

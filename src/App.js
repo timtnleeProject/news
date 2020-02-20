@@ -1,10 +1,12 @@
-import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, NavLink, withRouter } from 'react-router-dom';
 import React, { Suspense, lazy } from 'react'
 import CONFIG from './config'
 import styles from './App.module.css'
+import Loading from './components/Loading'
 
 const Home = lazy(() => import('./routes/Home'));
 const Setting = lazy(() => import('./routes/Setting'));
+const Explore = lazy(() => import('./routes/Explore'))
 
 const AppHeader = () => (
   <div className={styles.header}>
@@ -22,36 +24,45 @@ const routes = [{
   component: Home,
   exact: true
 }, {
+  path: '/explore',
+  name: '探索',
+  component: Explore,
+  exact: true
+}, {
   path: '/setting',
   name: '設定',
   component: Setting,
   exact: true
 }]
 
-const AppContent = () => (
-  <div className={styles.content}>
-    <div className={styles.page}>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Switch>
-          {
-            routes.map(route => {
-              const { exact, path, component } = route
-              return (
-                <Route
-                  key={path}
-                  exact={exact}
-                  path={path}
-                  component={component}
-                />)
-            })
-          }
-          <Route exact path="/" component={Home}/>
-          <Route path="/setting" component={Setting}/>
-        </Switch>
-      </Suspense>
+
+const AppContent = props => {
+  const currentRoute = routes.find(route => route.path === props.location.pathname)
+  return (
+    <div className={styles.content}>
+      <div className={styles.page}>
+        <Suspense fallback={ <Loading/> }>
+          <h2>{currentRoute.name}</h2>
+          <Switch>
+            {
+              routes.map(route => {
+                const { exact, path, component } = route
+                return (
+                  <Route
+                    key={path}
+                    exact={exact}
+                    path={path}
+                    component={component}
+                  />)
+              })
+            }
+          </Switch>
+        </Suspense>
+      </div>
     </div>
-  </div>
-)
+  )
+}
+const AppContentWithRoute = withRouter(AppContent)
 
 const AppFooter = () => (
   <div className={styles.footer}>
@@ -80,7 +91,7 @@ const App = () => (
   <div>
     <Router basename={CONFIG.baseUrl}>
       <AppHeader/>
-      <AppContent/>
+      <AppContentWithRoute/>
       <AppFooter/>
     </Router>
   </div>

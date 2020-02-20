@@ -1,5 +1,5 @@
 import store from './store';
-import { fetchHeadlines } from './api'
+import { fetchHeadlines, fetchEverything } from './api'
 
 const anHour = 60 * 60 * 1000
 const dateAfter = (milisec) => {
@@ -19,8 +19,22 @@ export function getTopHeadlines () {
     store.save({
       key: 'headlines',
       value: headlines,
-      expired: dateAfter(anHour)
+      expired: dateAfter(anHour / 2)
     })
     return headlines
+  })
+}
+
+export function getEverything () {
+  const localEverything = store.get('everything')
+  if (localEverything) return Promise.resolve(localEverything)
+  return fetchEverything({ q: 'apple' }).then(res => {
+    const articles = res.articles
+    store.save({
+      key: 'everything',
+      value: articles,
+      expired: dateAfter(anHour)
+    })
+    return articles
   })
 }

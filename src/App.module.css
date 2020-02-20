@@ -1,4 +1,10 @@
 .header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  left: 0;
+  background-color: var(--color-light);
+  z-index: 999;
   height: var(--header-height);
   display: flex;
   align-items: center;
@@ -14,7 +20,8 @@
   font-size: 12px;
 }
 .content {
-  height: calc(100vh - var(--footer-height) - var(--header-height));
+  padding-top: var(--header-height);
+  padding-bottom: var(--footer-height);
   overflow-y: scroll;
 }
 .page {

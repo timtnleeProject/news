@@ -1,0 +1,14 @@
+.search-bar {
+  margin-bottom: 10px;
+  display: flex;
+}
+
+.input {
+  flex-grow: 1;
+  height: 30px;
+  font-size: 14px;
+}
+.btn {
+  flex: 0 0 50px;
+  background-color: var(--color-secondary);
+}

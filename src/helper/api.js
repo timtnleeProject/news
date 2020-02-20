@@ -25,3 +25,11 @@ export function fetchHeadlines ({ country }) {
 export function fetchSources ({ country }) {
   return instance.get('/sources')
 }
+
+export function fetchEverything ({ q }) {
+  return instance.get('/everything', {
+    params: {
+      q
+    }
+  })
+}
