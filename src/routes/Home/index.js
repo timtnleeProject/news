@@ -4,6 +4,7 @@ import Loading from '../../components/Loading/index'
 import { getTopHeadlines } from '../../helper/data'
 
 export default class Home extends React.Component {
+  _isMounted = false
   constructor (props) {
     super(props)
     this.state = {
@@ -11,12 +12,18 @@ export default class Home extends React.Component {
     }
   }
   componentDidMount () {
+    this._isMounted = true
     getTopHeadlines({ country: 'tw' })
       .then(news => {
-        this.setState({
-          list: news
-        })
+        if (this._isMounted) {
+          this.setState({
+            list: news
+          })
+        }
       })
+  }
+  componentWillUnmount () {
+    this._isMounted = false
   }
   render () {
     return (

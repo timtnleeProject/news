@@ -5,6 +5,7 @@ import NewsList from '../../components/NewsList'
 import styles from './explore.module.css'
 
 export default class Explore extends React.Component {
+  _isMounted = false
   constructor (props) {
     super(props)
     this.state = {
@@ -16,11 +17,17 @@ export default class Explore extends React.Component {
     this.search = this.search.bind(this)
   }
   componentDidMount () {
+    this._isMounted = true
     fetchEverything({ q: 'game' }).then(res => {
-      this.setState({
-        list: res.articles
-      })
+      if (this._isMounted) {
+        this.setState({
+          list: res.articles
+        })
+      }
     })
+  }
+  componentWillUnmount () {
+    this._isMounted = false
   }
   handleQuery (e) {
     this.setState({
