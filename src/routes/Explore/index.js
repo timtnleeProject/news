@@ -1,5 +1,6 @@
 import React from 'react';
-import { fetchEverything } from '../../helper/api'
+import { getEverything } from '../../helper/data'
+import store from '../../helper/store'
 import Loading from '../../components/Loading'
 import NewsList from '../../components/NewsList'
 import styles from './explore.module.css'
@@ -18,10 +19,11 @@ export default class Explore extends React.Component {
   }
   componentDidMount () {
     this._isMounted = true
-    fetchEverything({ q: 'game' }).then(res => {
+    const params = store.get('params')
+    getEverything(params).then(list => {
       if (this._isMounted) {
         this.setState({
-          list: res.articles
+          list
         })
       }
     })
@@ -44,15 +46,15 @@ export default class Explore extends React.Component {
     this.setState({
       list: []
     })
-    fetchEverything({ q: this.state.q }).then(res => {
+    getEverything({ q: this.state.q }).then(list => {
       this.setState({
-        list: res.articles
+        list
       })
     })
   }
   render () {
     return (
-      <div>
+      <>
         <div className={styles['search-bar']}>
           <input
             value={this.state.q}
@@ -70,7 +72,7 @@ export default class Explore extends React.Component {
             ? <Loading/>
             : <NewsList list={this.state.list}/>
         }
-      </div>
+      </>
     )
   }
 }

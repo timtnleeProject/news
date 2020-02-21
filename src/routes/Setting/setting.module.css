@@ -1,6 +1,7 @@
 .section {
   padding: 10px;
   border: 1px solid lightgray;
+  margin-bottom: 10px;
 }
 .title {
   font-weight: bold;
@@ -19,10 +20,20 @@
   min-width: 30px;
   text-align: center;
   cursor: pointer;
+  border-radius: 5px;
 }
-.tag:hover {
+.tag:hover, .tag--wide:hover  {
   background-color: var(--color-secondary-hover);
 }
-.tag.active {
+.tag.active, .tag--wide.active {
   background-color: var(--color-secondary-variant);
+}
+.tag--wide {
+  padding: 5px 10px;
+  background-color: var(--color-secondary);
+  margin: 2px 5px;
+  min-width: 30px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 5px;
 }

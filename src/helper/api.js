@@ -14,11 +14,9 @@ instance.interceptors.response.use(response => {
   else return Promise.reject(response)
 })
 
-export function fetchHeadlines ({ country }) {
+export function fetchHeadlines (params) {
   return instance.get('/top-headlines', {
-    params: {
-      country
-    }
+    params
   })
 }
 

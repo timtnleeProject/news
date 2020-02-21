@@ -13,7 +13,7 @@ export default class Home extends React.Component {
   }
   componentDidMount () {
     this._isMounted = true
-    getTopHeadlines({ country: 'tw' })
+    getTopHeadlines()
       .then(news => {
         if (this._isMounted) {
           this.setState({

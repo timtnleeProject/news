@@ -35,8 +35,10 @@ export class Store {
 
 const globalStore = new Store({
   setting: {
-    country: 'tw'
-  }
+    country: 'tw',
+    category: 'general'
+  },
+  params: ''
 })
 // developing
 // store.clear()
