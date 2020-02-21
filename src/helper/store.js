@@ -38,7 +38,9 @@ const globalStore = new Store({
     country: 'tw',
     category: 'general'
   },
-  params: {}
+  params: {
+    q: 'Apple'
+  }
 })
 // developing
 const setting = globalStore.get('setting')
