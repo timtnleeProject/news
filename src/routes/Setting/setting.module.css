@@ -22,18 +22,13 @@
   cursor: pointer;
   border-radius: 5px;
 }
-.tag:hover, .tag--wide:hover  {
+.tag:hover  {
   background-color: var(--color-secondary-hover);
 }
-.tag.active, .tag--wide.active {
+.tag.active {
   background-color: var(--color-secondary-variant);
 }
 .tag--wide {
-  padding: 5px 10px;
-  background-color: var(--color-secondary);
+  padding: 5px 15px;
   margin: 2px 5px;
-  min-width: 30px;
-  text-align: center;
-  cursor: pointer;
-  border-radius: 5px;
 }

@@ -1,10 +1,27 @@
 import React from 'react'
 import styles from './setting.module.css'
 import store from '../../helper/store'
+import classnames from 'classnames'
 
 const countryStr = 'ae ar at au be bg br ca ch cn co cu cz de eg fr gb gr hk hu id ie il in it jp kr lt lv ma mx my ng nl no nz ph pl pt ro rs ru sa se sg si sk th tr tw ua us ve za'
 const countries = countryStr.split(' ')
 const categories = ['business', 'entertainment', 'general', 'health', 'science', 'sports', 'technology']
+
+const Tag = props => {
+  const tagClass = classnames(styles.tag, {
+    [styles['tag--wide']]: props.wide,
+    [styles.active]: props.active
+  })
+  return(
+    <div
+      className={tagClass}
+      onClick={props.onTagSelect}
+    >
+      {props.value}
+    </div>
+  )
+}
+
 export default class Setting extends React.Component {
   constructor (props) {
     super(props)
@@ -38,16 +55,14 @@ export default class Setting extends React.Component {
           <div className={styles['tags-wrap']}>
             {
               countries.map(country => {
-                const className = this.state.country === country
-                  ? styles.tag + ' ' + styles.active
-                  : styles.tag
-                return (<div
-                  className={className}
-                  key={country}
-                  onClick={this.handleTagSelect.bind(this, 'country', country)}
-                >
-                  {country}
-                </div>
+                const active = this.state.country === country
+                return (
+                  <Tag
+                    value={country}
+                    active={active}
+                    key={country}
+                    onTagSelect={this.handleTagSelect.bind(this, 'country', country)}
+                  ></Tag>
                 )}
               )
             }
@@ -58,16 +73,15 @@ export default class Setting extends React.Component {
           <div className={styles['tags-wrap']}>
             {
               categories.map(category => {
-                const className = this.state.category === category
-                  ? styles['tag--wide'] + ' ' + styles.active
-                  : styles['tag--wide'] 
-                return (<div
-                  className={className}
-                  key={category}
-                  onClick={this.handleTagSelect.bind(this, 'category', category)}
-                >
-                  {category}
-                </div>
+                const active = this.state.category === category
+                return (
+                  <Tag
+                    value={category}
+                    active={active}
+                    key={category}
+                    wide
+                    onTagSelect={this.handleTagSelect.bind(this, 'category', category)}
+                  ></Tag>
                 )}
               )
             }

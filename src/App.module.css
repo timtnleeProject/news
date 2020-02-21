@@ -59,12 +59,12 @@
   font-size: 14px;
   text-decoration: none;
 }
-.footer__tab.active {
-  background-color: var(--color-primary-variant);
-}
 .footer__tab:focus {
   outline: none;
 }
 .footer__tab:hover {
   background-color: var(--color-primary-hover);
+}
+.footer__tab.active {
+  background-color: var(--color-primary-variant);
 }
