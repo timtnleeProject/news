@@ -41,5 +41,7 @@ const globalStore = new Store({
   params: ''
 })
 // developing
+const setting = globalStore.get('setting')
+if ((!setting.country || setting.category) || globalStore.get('params') === null) globalStore.clear() 
 // store.clear()
 export default globalStore
