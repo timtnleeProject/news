@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './setting.module.css'
 import store from '../../helper/store'
 import classnames from 'classnames'
@@ -22,17 +22,11 @@ const Tag = props => {
   )
 }
 
-export default class Setting extends React.Component {
-  constructor (props) {
-    super(props)
-    const setting = store.get('setting')
-    this.state = {
-      country: setting.country,
-      category: setting.category
-    }
-  }
-  
-  handleTagSelect (type, value) {
+export default function Setting () {
+  const setting = store.get('setting')
+  const [country, setCountry] = useState(setting.country);
+  const [category, setCategory] = useState(setting.category);
+  const handleTagSelect = (type, value) => {
     const setting = store.get('setting')
     if (setting[type] === value) return
     store.remove('headlines')
@@ -43,51 +37,48 @@ export default class Setting extends React.Component {
         [type]: value
       }
     })
-    this.setState({
-      [type]: value
-    })
+    if (type === 'country') setCountry(value)
+    else setCategory(value)
   }
-  render () {
-    return (
-      <div>
-        <div className={styles.section}>
-          <div className={styles.title}>國家</div>
-          <div className={styles['tags-wrap']}>
-            {
-              countries.map(country => {
-                const active = this.state.country === country
-                return (
-                  <Tag
-                    value={country}
-                    active={active}
-                    key={country}
-                    onTagSelect={this.handleTagSelect.bind(this, 'country', country)}
-                  ></Tag>
-                )}
-              )
-            }
-          </div>
-        </div>
-        <div className={styles.section}>
-          <div className={styles.title}>類別</div>
-          <div className={styles['tags-wrap']}>
-            {
-              categories.map(category => {
-                const active = this.state.category === category
-                return (
-                  <Tag
-                    value={category}
-                    active={active}
-                    key={category}
-                    wide
-                    onTagSelect={this.handleTagSelect.bind(this, 'category', category)}
-                  ></Tag>
-                )}
-              )
-            }
-          </div>
+  return (
+    <div>
+      <div className={styles.section}>
+        <div className={styles.title}>國家</div>
+        <div className={styles['tags-wrap']}>
+          {
+            countries.map(c => {
+              const active = country === c
+              return (
+                <Tag
+                  value={c}
+                  active={active}
+                  key={c}
+                  onTagSelect={handleTagSelect.bind(this, 'country', c)}
+                ></Tag>
+              )}
+            )
+          }
         </div>
       </div>
-    )
-  }
+      <div className={styles.section}>
+        <div className={styles.title}>類別</div>
+        <div className={styles['tags-wrap']}>
+          {
+            categories.map(c => {
+              const active = category === c
+              return (
+                <Tag
+                  value={c}
+                  active={active}
+                  key={c}
+                  wide
+                  onTagSelect={handleTagSelect.bind(this, 'category', c)}
+                ></Tag>
+              )}
+            )
+          }
+        </div>
+      </div>
+    </div>
+  )
 }
