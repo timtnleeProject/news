@@ -39,7 +39,7 @@ const globalStore = new Store({
     category: 'general'
   },
   params: {
-    q: 'Apple'
+    q: 'Google'
   }
 })
 // developing
