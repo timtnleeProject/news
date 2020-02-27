@@ -1,12 +1,15 @@
 .setting {
   padding: 10px;
   cursor: pointer;
+  background-color: var(--color-secondary);
+  margin-bottom: 5px;
+  border-radius: 5px;
 }
 .setting__row {
   margin-bottom: 5px;
   display: flex;
   font-weight: 12px;
-  color: var(--color-secondary);
+  color: var(--color-secondary-variant);
 }
 .setting:hover .setting__row {
   color: var(--color-secondary-hover);
@@ -14,6 +17,6 @@
 .setting__row label {
   flex-basis: 40px;
   margin-right: 5px;
-  color: var(--color-secondary-variant);
+  color: #000;
   cursor: pointer;
 }

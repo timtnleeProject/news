@@ -16,7 +16,7 @@
 .modal__body {
   background-color: white;
   width: 80vw;
-  max-width: var(--var-page-width);
+  max-width: var(--page-width);
   padding: 20px;
   box-sizing: border-box;
   border-radius: 5px;
