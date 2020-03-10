@@ -3,42 +3,45 @@ import React, { Suspense, lazy } from 'react'
 import CONFIG from './config'
 import styles from './App.module.css'
 import Loading from './components/Loading'
+import { AppBar, Toolbar, Typography } from '@material-ui/core'
 
 const Home = lazy(() => import('./routes/Home'));
 const Explore = lazy(() => import('./routes/Explore'))
 
 const AppHeader = () => (
-  <div className={styles.header}>
-    <div className={styles['header__trend']}>Local News</div>
-    <div className={styles['header__tabs']}>
-      {
-        routes.map(route => {
-          const { path, name, exact } = route
-          return (
-            <NavLink
-              key={name}
-              to={path}
-              exact={exact}
-              className={styles['header__tab']}
-              activeClassName={styles.active}
-            >
-              {name}
-            </NavLink>
-          )
-        })
-      }
-    </div>
-  </div>
+  <AppBar>
+    <Toolbar>
+      <Typography className={styles['header__trend']}>Local News</Typography>
+      <Typography className={styles['header__tabs']}>
+        {
+          routes.map(route => {
+            const { path, name, exact } = route
+            return (
+              <NavLink
+                key={name}
+                to={path}
+                exact={exact}
+                className={styles['header__tab']}
+                activeClassName={styles.active}
+              >
+                {name}
+              </NavLink>
+            )
+          })
+        }
+      </Typography>
+    </Toolbar>
+  </AppBar>
 )
 
 const routes = [{
   path: '/',
-  name: '焦點',
+  name: 'Headlines',
   component: Home,
   exact: true
 }, {
   path: '/explore',
-  name: '探索',
+  name: 'Explore',
   component: Explore,
   exact: true
 }]

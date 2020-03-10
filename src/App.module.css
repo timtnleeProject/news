@@ -1,24 +1,9 @@
-.header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  left: 0;
-  background-color: var(--color-primary);
-  z-index: 999;
-  height: var(--header-height);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
-  box-sizing: border-box;
-  box-shadow: 0 2px 5px lightgray;
-  color: var(--color-light);
-}
 .header__trend {
   font-weight: bold;
+  flex-grow: 1;
 }
 .header__tabs {
-  width: 100px;
+  width: 150px;
   display: flex;
   justify-content: center;
   align-items: center;

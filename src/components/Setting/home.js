@@ -1,26 +1,11 @@
 import React, { useState } from 'react'
 import styles from './setting.module.css'
 import store from '../../helper/store'
-import classnames from 'classnames'
+import Chip from '@material-ui/core/Chip'
 
 const countryStr = 'ae ar at au be bg br ca ch cn co cu cz de eg fr gb gr hk hu id ie il in it jp kr lt lv ma mx my ng nl no nz ph pl pt ro rs ru sa se sg si sk th tr tw ua us ve za'
 const countries = countryStr.split(' ')
 const categories = ['business', 'entertainment', 'general', 'health', 'science', 'sports', 'technology']
-
-const Tag = props => {
-  const tagClass = classnames(styles.tag, {
-    [styles['tag--wide']]: props.wide,
-    [styles.active]: props.active
-  })
-  return(
-    <div
-      className={tagClass}
-      onClick={props.onTagSelect}
-    >
-      {props.value}
-    </div>
-  )
-}
 
 export default function Setting () {
   const setting = store.get('setting')
@@ -43,37 +28,38 @@ export default function Setting () {
   return (
     <div>
       <div className={styles.section}>
-        <div className={styles.title}>國家</div>
+        <div className={styles.title}>country</div>
         <div className={styles['tags-wrap']}>
           {
             countries.map(c => {
               const active = country === c
               return (
-                <Tag
-                  value={c}
-                  active={active}
+                <Chip
+                  className={styles.tag}
+                  onClick={handleTagSelect.bind(this, 'country', c)}
+                  label={c}
                   key={c}
-                  onTagSelect={handleTagSelect.bind(this, 'country', c)}
-                ></Tag>
+                  color={active ? 'primary' : 'default'}
+                />
               )}
             )
           }
         </div>
       </div>
       <div className={styles.section}>
-        <div className={styles.title}>類別</div>
+        <div className={styles.title}>category</div>
         <div className={styles['tags-wrap']}>
           {
             categories.map(c => {
               const active = category === c
               return (
-                <Tag
-                  value={c}
-                  active={active}
+                <Chip
+                  className={styles.tag}
+                  onClick={handleTagSelect.bind(this, 'category', c)}
+                  label={c}
                   key={c}
-                  wide
-                  onTagSelect={handleTagSelect.bind(this, 'category', c)}
-                ></Tag>
+                  color={active ? 'primary' : 'default'}
+                />
               )}
             )
           }

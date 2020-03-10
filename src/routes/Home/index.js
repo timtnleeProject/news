@@ -1,11 +1,12 @@
 import React from 'react'
 import NewsList from '../../components/NewsList'
-import Modal from '../../components/Modal'
 import Loading from '../../components/Loading'
 import Setting from '../../components/Setting/home'
 import SettingBar from './SettingBar'
 import { getTopHeadlines } from '../../helper/data'
 import store from '../../helper/store'
+import Modal from '@material-ui/core/Modal'
+import Button from '@material-ui/core/Button'
 
 export default class Home extends React.Component {
   _isMounted = false
@@ -37,17 +38,21 @@ export default class Home extends React.Component {
       })
   }
 
-  toggleModal (status) {
-    const stateAfter = { modalOpen: status }
-    if (!status) {
-      const { category, country } = this.state.setting
-      const localSetting = store.get('setting')
-      if (category !== localSetting.category || country !== localSetting.country) {
-        stateAfter.setting = localSetting
-        stateAfter.list = []
-        this.getTopHeadlines()
-      }
+  toggleModal () {
+    this.setState({
+      modalOpen: !this.state.modalOpen
+    })
+  }
+  save () {
+    const stateAfter = {}
+    const { category, country } = this.state.setting
+    const localSetting = store.get('setting')
+    if (category !== localSetting.category || country !== localSetting.country) {
+      stateAfter.setting = localSetting
+      stateAfter.list = []
+      this.getTopHeadlines()
     }
+    this.toggleModal()
     this.setState(stateAfter)
   }
   render () {
@@ -55,7 +60,7 @@ export default class Home extends React.Component {
     return (
       <div>
         <SettingBar
-          onClick={this.toggleModal.bind(this, true)}
+          onClick={this.toggleModal.bind(this)}
           setting={{ category, country }}
         />
         {
@@ -65,9 +70,24 @@ export default class Home extends React.Component {
         }
         <Modal
           open={this.state.modalOpen}
-          onClose={this.toggleModal.bind(this, false)}
+          onClose={this.toggleModal.bind(this)}
         >
-          <Setting></Setting>
+          <div style={{
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            position: 'absolute',
+            width: '80vw',
+            maxWidth: '600px',
+            backgroundColor: 'white',
+            padding: '10px'
+          }}>
+            <Setting></Setting>
+            <div style={{float: 'right'}}>
+              <Button variant="contained" className="m-r" onClick={this.toggleModal.bind(this)}>Cancel</Button>
+              <Button variant="contained" color="primary" onClick={this.save.bind(this)}>Save</Button>
+            </div>
+          </div>
         </Modal>
       </div>
     )

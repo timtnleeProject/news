@@ -13,22 +13,5 @@
   flex-wrap: wrap;
 }
 .tag {
-  padding: 5px;
-  background-color: var(--color-secondary);
-  color: var(--color-dark);
   margin: 2px;
-  min-width: 30px;
-  text-align: center;
-  cursor: pointer;
-  border-radius: 5px;
-}
-.tag:hover  {
-  background-color: var(--color-secondary-hover);
-}
-.tag.active {
-  background-color: var(--color-secondary-variant);
-}
-.tag--wide {
-  padding: 5px 15px;
-  margin: 2px 5px;
 }
