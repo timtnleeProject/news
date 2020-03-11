@@ -4,6 +4,8 @@ import store from '../../helper/store'
 import Loading from '../../components/Loading'
 import NewsList from '../../components/NewsList'
 import styles from './explore.module.css'
+import Button from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField'
 
 export default class Explore extends React.Component {
   _isMounted = false
@@ -14,7 +16,6 @@ export default class Explore extends React.Component {
       q: ''
     }
     this.handleQuery = this.handleQuery.bind(this)
-    this.handleKeydown = this.handleKeydown.bind(this)
     this.search = this.search.bind(this)
   }
   componentDidMount () {
@@ -36,11 +37,6 @@ export default class Explore extends React.Component {
       q: e.target.value
     })
   }
-  handleKeydown (e) {
-    if (e.keyCode === 13) {
-      this.search()
-    }
-  }
   search () {
     if (!this.state.q) return
     this.setState({
@@ -56,16 +52,19 @@ export default class Explore extends React.Component {
     return (
       <>
         <div className={styles['search-bar']}>
-          <input
+          <TextField
             value={this.state.q}
+            id="search-text"
+            label="Standard"
             className={styles.input}
             onChange={this.handleQuery}
-            onKeyDown={this.handleKeydown}
-          ></input>
-          <button
-            className={styles.btn}
+          />
+          <Button
+            variant="contained"
+            color="primary"
             onClick={this.search}
-          >搜尋</button>
+            className="m-l"
+          >搜尋</Button>
         </div>
         {
           this.state.list.length === 0

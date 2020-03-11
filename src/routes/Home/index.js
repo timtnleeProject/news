@@ -7,6 +7,7 @@ import { getTopHeadlines } from '../../helper/data'
 import store from '../../helper/store'
 import Modal from '@material-ui/core/Modal'
 import Button from '@material-ui/core/Button'
+import Fade from '@material-ui/core/Fade';
 
 export default class Home extends React.Component {
   _isMounted = false
@@ -72,22 +73,24 @@ export default class Home extends React.Component {
           open={this.state.modalOpen}
           onClose={this.toggleModal.bind(this)}
         >
-          <div style={{
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            position: 'absolute',
-            width: '80vw',
-            maxWidth: '600px',
-            backgroundColor: 'white',
-            padding: '10px'
-          }}>
-            <Setting></Setting>
-            <div style={{float: 'right'}}>
-              <Button variant="contained" className="m-r" onClick={this.toggleModal.bind(this)}>Cancel</Button>
-              <Button variant="contained" color="primary" onClick={this.save.bind(this)}>Save</Button>
+          <Fade in={this.state.modalOpen}>
+            <div style={{
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              position: 'absolute',
+              width: '80vw',
+              maxWidth: '600px',
+              backgroundColor: 'white',
+              padding: '10px'
+            }}>
+              <Setting></Setting>
+              <div style={{float: 'right'}}>
+                <Button variant="contained" className="m-r" onClick={this.toggleModal.bind(this)}>Cancel</Button>
+                <Button variant="contained" color="primary" onClick={this.save.bind(this)}>Save</Button>
+              </div>
             </div>
-          </div>
+          </Fade>
         </Modal>
       </div>
     )

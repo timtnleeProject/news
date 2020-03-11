@@ -2,8 +2,9 @@ import { BrowserRouter as Router, Route, Switch, NavLink, withRouter } from 'rea
 import React, { Suspense, lazy } from 'react'
 import CONFIG from './config'
 import styles from './App.module.css'
-import Loading from './components/Loading'
-import { AppBar, Toolbar, Typography } from '@material-ui/core'
+import Loading from 'components/Loading'
+import ScrollToTop from 'components/ScrollToTop'
+import { AppBar, Toolbar, Typography, Link } from '@material-ui/core'
 
 const Home = lazy(() => import('./routes/Home'));
 const Explore = lazy(() => import('./routes/Explore'))
@@ -79,7 +80,7 @@ const AppFooter = () => (
   <div className={styles.footer}>
     <div className={styles['footer__info']}>
       <span>Thanks for: </span>
-      <a href="https://newsapi.org/" target="_blank" rel="noopener noreferrer">NEWS API</a>
+      <Link href="https://newsapi.org/" target="_blank" rel="noopener noreferrer">NEWS API</Link>
     </div>
   </div>
 )
@@ -87,6 +88,7 @@ const AppFooter = () => (
 const App = () => (
   <div>
     <Router basename={CONFIG.baseUrl}>
+      <ScrollToTop />
       <AppHeader/>
       <AppContentWithRoute/>
       <AppFooter/>

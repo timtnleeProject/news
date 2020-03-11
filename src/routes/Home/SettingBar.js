@@ -8,6 +8,7 @@ export default function Setting (props) {
   const { country, category } = props.setting
   return (
     <List
+      className="no-tab"
       style={{
         maxWidth: '300px',
         cursor: 'pointer',
