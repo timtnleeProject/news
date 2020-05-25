@@ -17,7 +17,8 @@ export default class Home extends React.Component {
     this.state = {
       list: [],
       modalOpen: false,
-      setting
+      setting,
+      error: false
     }
   }
   componentDidMount () {
@@ -36,6 +37,11 @@ export default class Home extends React.Component {
             list: news
           })
         }
+      })
+      .catch(() => {
+        this.setState({
+          error: true
+        })
       })
   }
 
@@ -65,9 +71,12 @@ export default class Home extends React.Component {
           setting={{ category, country }}
         />
         {
-          this.state.list.length === 0
-            ? <Loading/>
-            : <NewsList list={this.state.list}/>
+          this.state.error
+            ? <div>API is not available</div>
+            : this.state.list.length === 0
+              ? <Loading/>
+              : <NewsList list={this.state.list}/>
+         
         }
         <Modal
           open={this.state.modalOpen}
