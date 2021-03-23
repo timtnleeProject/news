@@ -12,10 +12,10 @@ export function resetTopHeadlines () {
 
 export function getTopHeadlines () {
   const setting = store.get('setting')
-  const { country, category } = setting
+  const { country:lang, category:topic } = setting
   const localHeadlines = store.get('headlines')
   if (localHeadlines) return Promise.resolve(localHeadlines)
-  return fetchHeadlines({ country, category }).then(res => {
+  return fetchHeadlines({ lang, topic }).then(res => {
     const headlines = res.articles
     store.save({
       key: 'headlines',

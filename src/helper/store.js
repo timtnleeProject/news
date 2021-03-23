@@ -36,7 +36,7 @@ export class Store {
 const globalStore = new Store({
   setting: {
     country: 'tw',
-    category: 'general'
+    category: 'news'
   },
   params: {
     q: 'Google'

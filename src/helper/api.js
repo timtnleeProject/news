@@ -6,7 +6,8 @@ const instance = axios.create({
   baseURL: origin,
   timeout: 3000,
   headers: {
-    'x-api-key': token
+    "x-rapidapi-key": token,
+    "x-rapidapi-host": "newscatcher.p.rapidapi.com",
   }
 })
 instance.interceptors.response.use(response => {
@@ -15,17 +16,17 @@ instance.interceptors.response.use(response => {
 })
 
 export function fetchHeadlines (params) {
-  return instance.get('/top-headlines', {
+  return instance.get('/latest_headlines', {
     params
   })
 }
 
-export function fetchSources ({ country }) {
-  return instance.get('/sources')
-}
+// export function fetchSources ({ country }) {
+//   return instance.get('/sources')
+// }
 
 export function fetchEverything ({ q }) {
-  return instance.get('/everything', {
+  return instance.get('/search', {
     params: {
       q
     }

@@ -80,7 +80,7 @@ const AppFooter = () => (
   <div className={styles.footer}>
     <div className={styles['footer__info']}>
       <span>Thanks for: </span>
-      <Link href="https://newsapi.org/" target="_blank" rel="noopener noreferrer">NEWS API</Link>
+      <Link href="https://rapidapi.com/organization/newscatcher-api" target="_blank" rel="noopener noreferrer">Newscatcher</Link>
     </div>
   </div>
 )

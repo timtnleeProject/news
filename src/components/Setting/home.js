@@ -3,9 +3,9 @@ import styles from './setting.module.css'
 import store from 'helper/store'
 import Chip from '@material-ui/core/Chip'
 
-const countryStr = 'ae ar at au be bg br ca ch cn co cu cz de eg fr gb gr hk hu id ie il in it jp kr lt lv ma mx my ng nl no nz ph pl pt ro rs ru sa se sg si sk th tr tw ua us ve za'
+const countryStr = 'af ar bg bn ca cn cs cy da de el en es et fa fi fr gu he hi hr hu id it ja kn ko lt lv mk ml mr ne nl no pa pl pt ro ru sk sl so sq sv sw ta te th tl tr tw uk ur vi'
 const countries = countryStr.split(' ')
-const categories = ['business', 'entertainment', 'general', 'health', 'science', 'sports', 'technology']
+const categories = ['news', 'sport', 'tech', 'world', 'finance', 'politics', 'business', 'economics', 'entertainment']
 
 export default function Setting () {
   const setting = store.get('setting')
@@ -28,7 +28,7 @@ export default function Setting () {
   return (
     <div>
       <div className={styles.section}>
-        <div className={styles.title}>country</div>
+        <div className={styles.title}>language</div>
         <div className={styles['tags-wrap']}>
           {
             countries.map(c => {

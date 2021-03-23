@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import styles from './news.module.css'
 
 function News (props) {
+  const {
+    title,
+    link,
+    author,
+    published_date,
+    summary,
+  } = props;
   const openLink = () => {
-    window.open(props.url, '_blank')
+    window.open(link, '_blank')
   }
-  const info = [props.source.name]
-  if (props.author) info.push(props.author)
-  const date = props.publishedAt
-    ? new Date(props.publishedAt).toLocaleString()
-    : null
+  const info = [props.rights]
+  if (author) info.push(author)
+  const date = useMemo(() => published_date
+    ? new Date(published_date).toLocaleString()
+    : null, [published_date]) 
   return (
     <div
       className={styles.item}
@@ -25,12 +32,12 @@ function News (props) {
         : null
       }
       <div className={styles.content}>
-        <div className={styles.title}>{props.title}</div>
+        <div className={styles.title}>{title}</div>
         <div className={styles.info}>
           <span>{info.join('/')}</span>
           <span>{date}</span>
         </div>
-        <div className={styles.description}>{props.description}</div>
+        <div className={styles.description}>{summary}</div>
       </div>
     </div>
   )
@@ -39,13 +46,7 @@ function News (props) {
 export default function NewsList (props) {
   const news = props.list.map((item, i) => (
     <News
-      title={item.title}
-      description={item.description}
-      url={item.url}
-      source={item.source}
-      author={item.author}
-      publishedAt={item.publishedAt}
-      image={item.urlToImage}
+      {...item}
       key={i}
     />
   ))

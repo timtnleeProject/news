@@ -1,7 +1,7 @@
 export default {
   baseUrl: '/news',
   api: {
-    origin: 'https://newsapi.org/v2/',
-    token: 'f26e75f9a2a74e53bdc3ee27baf8a69c'
+    origin: 'https://newscatcher.p.rapidapi.com/v1',
+    token: 'c621d274c3msh34e5804b33ca27fp1f3870jsn56dc270a9b12'
   }
 }
