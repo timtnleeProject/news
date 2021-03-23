@@ -25,10 +25,8 @@ export function fetchHeadlines (params) {
 //   return instance.get('/sources')
 // }
 
-export function fetchEverything ({ q }) {
+export function fetchEverything (params) {
   return instance.get('/search', {
-    params: {
-      q
-    }
+    params
   })
 }

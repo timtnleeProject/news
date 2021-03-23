@@ -27,15 +27,23 @@ export function getTopHeadlines () {
 }
 
 const isSame = (ob1, ob2) => {
-  const keys = Object.keys({...ob1, ob2})
+  const keys = Object.keys({...ob1, ...ob2})
   const inconsist = keys.some(key => {
     return ob1[key] !== ob2[key]
   })
   return !inconsist
 }
-export function getEverything (params) {
+export function getEverything (_params) {
   const localParams = store.get('params')
-  if (isSame(localParams, params)) {
+  const { country:lang } = store.get('setting')
+  const params = {
+    ..._params,
+    lang
+  }
+  if (isSame(
+    localParams,
+    params
+  )) {
     const localEverything = store.get('everything')
     if (localEverything) return Promise.resolve(localEverything)
   }
