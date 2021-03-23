@@ -6,7 +6,7 @@ const instance = axios.create({
   baseURL: origin,
   timeout: 3000,
   headers: {
-    'X-Api-Key': token
+    'x-api-key': token
   }
 })
 instance.interceptors.response.use(response => {
